@@ -1,0 +1,205 @@
+@use '../abstracts' as *;
+
+.hope-slider {
+    box-sizing: border-box;
+    max-height: 55.5rem;
+    max-width: 90rem;
+    margin: 0 auto;
+    min-height: 100vh;
+    overflow: hidden;
+    
+    &::before {
+        background: #F15C22;
+        background: linear-gradient(90deg,rgba(241, 92, 34, 1) 0%, rgba(247, 147, 29, 1) 40%, rgba(255, 200, 64, 1) 90%);
+        content: "";
+        left: 0;
+        padding: 4rem;
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        height: min(100vh, 47.5rem);
+    }
+
+
+    @include media-query('desktop') {
+        align-items: center;
+        display: flex;
+        min-height: unset;
+        padding: max(10vh, 12rem) 1vw;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        border-radius: 50%;
+        background: $deep_blue;
+        box-sizing: border-box;
+        color: #fff;
+        display: none;
+        height: 2rem;
+        left: calc(3.5rem + 5vw);
+        right: unset;
+        top: 6.25rem;
+        transform: translateX(-50%);
+        width: 2rem;
+
+
+        &::after {
+            content: "";
+            background: url("file:///C:/Users/anale/Documents/GitHub/ghost-hope/assets/media/icons/arrow.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 1rem;
+            height: 2rem;
+            width: 2rem;
+        }
+
+        
+        &:hover {
+            background: $yellow;
+        }
+
+        @include media-query('desktop') {
+            display: flex;
+            left: calc(min(2vw,5%) + 6rem);
+            top: 4.25rem;
+        }
+    }
+
+    .swiper-button-next {
+        left: calc(6.5rem + 5vw);
+        @include media-query('desktop') {
+            left: calc(min(2vw,5%) + 9.5rem);
+        }
+        &::after {
+            transform: rotate(180deg);
+        }
+    }
+
+    .text-slide-wrapper,
+    .img-slide-wrapper {
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .text-slider {
+        flex: 0 0.08 auto;
+        @include media-query('desktop') {
+            margin-bottom: 8vh;
+            width: 35%;
+        }
+
+        .text-slide-wrapper {
+            padding: 4rem 0 0 2.5rem;
+
+            .content-text {
+                max-width: 90vw;
+                padding: 0 3.75rem 0 5vw;
+                @include media-query('desktop') {
+                    padding: 0 3.75rem 0 min(5vw, 4rem);
+                    max-width: 18.625rem;
+                }
+                
+
+                .hope-slider-cta {
+                    background: $yellow;
+                    border-radius: 2rem;
+                    color: $text_dark;
+                    font: 500 1rem/1.13 $font_family_mono;
+                    padding: 1rem 3.5rem 1rem 2rem;
+                    position: relative;
+                    margin: 1.625rem 0 0;
+
+                    &:hover {
+                        background: $deep_blue;
+                        color: $text_light;
+
+                        .arrow svg {
+                            stroke: $text_light;
+                        }
+                    }
+
+                    .arrow {
+                        position: absolute;
+                        right: 2rem;
+                        top: calc(50% - .45rem);
+
+                        svg {
+                            height: 1rem;
+                            stroke: $deep_blue;
+                            transform: rotate(180deg);
+                            width: 1rem;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    .img-slider {
+        position: inherit;
+
+        @include media-query('desktop') {
+            position: relative;
+        }
+
+        .img-slide-wrapper {
+            padding: 3rem 2rem 4rem;
+
+            @include media-query('desktop') {
+                padding: 1rem 0 4rem;
+            }
+
+            .content-media {
+                flex: 1 1 auto;
+                text-align: center;
+                &>img {
+                    border-radius: 5px;
+                    height: 100%;
+                    width: calc(100% - 10VW);
+                    @include media-query('desktop') {
+                        min-width: 40rem;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        & > .swiper-pagination {
+            top: 4rem;
+            transform: none;
+            text-align: left;
+            left: calc(5vw + 2.25rem);
+            height: 2rem;
+
+            @include media-query('desktop') {
+                top: inherit;
+                left: -.25rem;;
+            }
+
+            .swiper-pagination-bullet {
+                background: #fff;
+                height: 1.15rem;
+                margin-bottom: .75rem;
+                margin-right: .5rem;
+                width: 1.15rem;
+                
+                @include media-query('desktop') {
+                    width: 1rem;
+                    height: 1rem;
+                }
+
+                .swiper-pagination-bullet-active {
+                    opacity: 1;
+                }
+            }
+        }
+
+    }
+
+
+
+
+}
