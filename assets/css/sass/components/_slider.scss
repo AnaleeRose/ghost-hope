@@ -10,7 +10,7 @@
     
     &::before {
         background: #F15C22;
-        background: linear-gradient(90deg,rgba(241, 92, 34, 1) 0%, rgba(247, 147, 29, 1) 40%, rgba(255, 200, 64, 1) 90%);
+        background: linear-gradient(90deg,rgba(241, 92, 34, 1) 0%, rgba(247, 147, 29, 1) 50%, rgba(255, 200, 64, 1) 100%);
         content: "";
         left: 0;
         position: absolute;
@@ -18,9 +18,9 @@
         width: 100%;
         height: 100%;
 
-        // @include media-query('desktop') {
-        //     height: min(100vh, 55.5rem);
-        // }
+        @include media-query('desktop') {
+            height: min(100vh, 55.5rem);
+        }
     }
 
 
@@ -30,7 +30,6 @@
         max-height: 55.5rem;
         min-height: unset;
         padding: max(10vh, 12rem) 0;
-        position: relative;
     }
 
     .swiper-button-next,

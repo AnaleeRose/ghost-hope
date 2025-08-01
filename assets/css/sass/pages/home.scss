@@ -3,6 +3,7 @@ body {
     background-color: #fff6de;
     position: relative;
 }
+
 h1,
 h2,
 h3,
@@ -26,5 +27,8 @@ h1 {
     padding: 2.625rem 0 1.4rem 0;
 }
 
-@include media-query('tablet') {
+main {
+    @include media-query('desktop') {
+        position: relative;
+    }
 }
