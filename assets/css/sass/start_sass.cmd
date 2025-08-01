@@ -1,1 +1,0 @@
- sass --no-source-map --watch ./styles.scss:./../styles.min.css --style compressed

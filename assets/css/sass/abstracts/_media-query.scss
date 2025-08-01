@@ -1,0 +1,35 @@
+@use "sass:string";
+@use "sass:map";
+$page_width: (
+  "desktop-xl": 1440px,
+  "desktop": 1200px,
+  "tablet": 800px,
+  "mobile-xl": 450px,
+  "mobile": 300px
+);
+
+$size-desktop-xl: 1600px;
+$size-desktop: 1000px;
+$size-tablet: 600px;
+$size-mobile-xl: 400px;
+
+@mixin media-query($chosen-size) {
+    $size: map.get((
+        "desktop-xl" : map.get($page_width, "desktop-xl"),
+        "desktop" : map.get($page_width, "desktop"),
+        "tablet" : map.get($page_width, "tablet"),
+        "mobile-xl" : map.get($page_width, "mobile-xl"),
+        "mobile" : map.get($page_width, "mobile"),
+        "tablet-only" : map.get($page_width, "tablet "),
+        "desktop-only" : map.get($page_width, "desktop"),
+    ), $chosen-size);
+    @if (string.index($chosen-size, '-only')) {
+        @media (max-width: $size) {
+            @content; 
+        }
+    } @else {
+        @media (min-width: $size) {
+            @content; 
+        }
+    }
+}
