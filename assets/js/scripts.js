@@ -10,7 +10,6 @@ docReady(function() {
     
     //swiper has some bug that causes it to add an extra button, this removes the button that is not in use
     function remove_pagination_button() {
-        console.log("RAN")
         let last_pagination_button = document.querySelector(".img-slider .swiper-pagination-bullet:nth-of-type(4)");
         (last_pagination_button) ? last_pagination_button.parentElement.removeChild(last_pagination_button.previousSibling) : false;
     }
