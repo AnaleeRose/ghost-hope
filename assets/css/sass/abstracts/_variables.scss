@@ -1,0 +1,8 @@
+@use "sass:string";
+@use "sass:map";
+
+$env: "prod";
+$base_url: (
+  "local": "file:///C:/Users/anale/Documents/GitHub/ghost-hope",
+  "prod": "https://savannahskinner.com/previous_projects/hope/"
+);
