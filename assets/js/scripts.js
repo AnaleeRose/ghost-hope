@@ -5,8 +5,16 @@ function docReady(fn) {
         document.addEventListener("DOMContentLoaded", fn);
     }
 }  
-
+var img_swiper;
 docReady(function() {
+    
+    //swiper has some bug that causes it to add an extra button, this removes the button that is not in use
+    function remove_pagination_button() {
+        console.log("RAN")
+        let last_pagination_button = document.querySelector(".img-slider .swiper-pagination-bullet:nth-of-type(4)");
+        (last_pagination_button) ? last_pagination_button.parentElement.removeChild(last_pagination_button.previousSibling) : false;
+    }
+
     // hides invisible content from screen readers
     function setAriaHidden(index, swiper) {
         index = (index && index >= 3) ? 0 : (index && index <= -1) ? 2 : index;
@@ -48,7 +56,7 @@ docReady(function() {
     }
 
     // slider for the images
-    img_swiper = new Swiper('.img-slider.swiper', {
+    let img_swiper = new Swiper('.img-slider.swiper', {
         a11y: {
             prevSlideMessage: 'Previous slide: none',
             nextSlideMessage: 'Next slide: ' + allyText(1),
@@ -65,6 +73,9 @@ docReady(function() {
                 slidesOffsetAfter: 120,
 
             },
+            1680: {
+                slidesPerView: 1,
+            }
         },
         initialSlide: 0,
         on: {
@@ -76,7 +87,7 @@ docReady(function() {
 				this.slides[2].ariaLabel = allyText(2);
 		        this.pagination.bullets[0].ariaLabel = "jump to the " + allyText(0);
 		        this.pagination.bullets[1].ariaLabel = "jump to the " + allyText(1);
-		        this.pagination.bullets[3].ariaLabel = "jump to the " + allyText(2);
+                (this.pagination.bullets[3]) ? this.pagination.bullets[3].ariaLabel = "jump to the " + allyText(2) : this.pagination.bullets[2].ariaLabel = "jump to the " + allyText(2);
 			},
 			slideChange: function () {
                 let activeIndex = parseInt(this.activeIndex);
@@ -89,6 +100,10 @@ docReady(function() {
                 let activeIndex = parseInt(this.activeIndex);
 				setAriaHidden(activeIndex, this);
             },
+            resize: function () {
+                remove_pagination_button();
+
+            }
 		},
         pagination: {
             el: '.swiper-pagination',
@@ -98,7 +113,7 @@ docReady(function() {
     });
 
     // slider for the text on the left
-    text_swiper = new Swiper('.text-slider.swiper', {
+    let text_swiper = new Swiper('.text-slider.swiper', {
         a11y: {
             prevSlideMessage: 'Previous slide: none',
             nextSlideMessage: 'Next slide: ' + allyText(1),
@@ -140,11 +155,12 @@ docReady(function() {
     });
 
     img_swiper.controller.control = text_swiper;
+    remove_pagination_button();
 
-    //swiper has some bug that causes it to add an extra button, this removes the button that is not in use
-    let last_pagination_button = document.querySelector(".img-slider .swiper-pagination-bullet:nth-of-type(4)");
-    (last_pagination_button) ? last_pagination_button.parentElement.removeChild(last_pagination_button.previousSibling) : false;
-
+    addEventListener("orientationchange", (event) => { 
+        text_swiper.update();
+        img_swiper.update();
+    })
 });
 
 

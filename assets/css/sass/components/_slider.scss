@@ -1,9 +1,9 @@
+@use "sass:map";
 @use '../abstracts' as *;
 
 .hope-slider {
     box-sizing: border-box;
-    max-height: 55.5rem;
-    max-width: 90rem;
+    max-width: 105rem;
     margin: 0 auto;
     min-height: 100vh;
     overflow: hidden;
@@ -13,19 +13,24 @@
         background: linear-gradient(90deg,rgba(241, 92, 34, 1) 0%, rgba(247, 147, 29, 1) 40%, rgba(255, 200, 64, 1) 90%);
         content: "";
         left: 0;
-        padding: 4rem;
         position: absolute;
         top: 0;
-        width: 100vw;
-        height: min(100vh, 47.5rem);
+        width: 100%;
+        height: 100%;
+
+        // @include media-query('desktop') {
+        //     height: min(100vh, 55.5rem);
+        // }
     }
 
 
     @include media-query('desktop') {
         align-items: center;
         display: flex;
+        max-height: 55.5rem;
         min-height: unset;
-        padding: max(10vh, 12rem) 1vw;
+        padding: max(10vh, 12rem) 0;
+        position: relative;
     }
 
     .swiper-button-next,
@@ -36,7 +41,7 @@
         color: #fff;
         display: none;
         height: 2rem;
-        left: calc(3.5rem + 5vw);
+        left: calc(3.5rem + 4vw);
         right: unset;
         top: 6.25rem;
         transform: translateX(-50%);
@@ -45,7 +50,7 @@
 
         &::after {
             content: "";
-            background: url("file:///C:/Users/anale/Documents/GitHub/ghost-hope/assets/media/icons/arrow.svg");
+            background: url(map.get($base_url, $env) + "/assets/media/icons/arrow.svg");
             background-position: center;
             background-repeat: no-repeat;
             background-size: 1rem;
@@ -66,7 +71,7 @@
     }
 
     .swiper-button-next {
-        left: calc(6.5rem + 5vw);
+        left: calc(6.5rem + 4vw);
         @include media-query('desktop') {
             left: calc(min(2vw,5%) + 9.5rem);
         }
